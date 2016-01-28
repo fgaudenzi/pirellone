@@ -1,0 +1,16 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "mongolab": {
+    "name": "mongolab",
+    "connector": "mongodb",
+    "host": process.env.Mongo_HOST,
+    "database": process.env.Mongo_DB,
+    "username":  process.env.Mongo_USER",
+    "password":  process.env.Mongo_PWD,
+    "port":  process.env.Mongo_PORT
+  }
+}
+

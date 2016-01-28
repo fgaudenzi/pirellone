@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="familidayApp">
+<head>
+  <!-- <link href='https://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>-->
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link href="/css/bootstrap.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+  <link href="/css/font.css" rel="stylesheet">
+  <script src="/js/angular.min.js"></script>
+  <script src="/js/angular-resource.min.js"></script>
+  <script src="/js/lb-services.js"></script>
+  <script src="/js/svg2png.js"></script>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script type="text/javascript">
+    var app=angular.module('familidayApp',['lbServices']);
+
+    app.controller('TestController', function ($scope, Sentence){
+      $scope.create=0;
+      $scope.riga1="";
+      $scope.riga2="";
+      $scope.riga3="";
+      $scope.riga4="";
+      $scope.riga5="";
+     // res.setHeader('Content-Type', 'image/png');
+      $scope.downloadf=function(){
+          Sentence.create({"row1": $scope.riga1,
+            "row2": $scope.riga2,
+            "row3": $scope.riga3,
+            "row4": $scope.riga4,"row5": $scope.riga5}).$promise.then(function(data){
+            console.log(data.id);
+            $scope.share='/png/'+data.id;
+            var element = document.createElement('a');
+            element.href="/png/"+data.id;
+            element.download="/png/"+data.id;
+            element.click();
+            $scope.create=1;
+            document.body.removeChild(element);
+        });
+
+      }
+      $scope.change
+      $scope.share=function(){
+        Sentence.create({"row1": $scope.riga1,
+          "row2": $scope.riga2,
+          "row3": $scope.riga3,
+          "row4": $scope.riga4,"row5": $scope.riga5}).$promise.then(function(data){
+          console.log(data.id);
+          $scope.share='/png/'+data.id;
+          var element = document.createElement('a');
+          element.href="/png/"+data.id;
+          element.download="/png/"+data.id;
+          element.click();
+
+          document.body.removeChild(element);
+        });
+
+      }
+      /*$scope.test=function(){
+        svgAsPngUri(document.getElementById("pirellone"), {"font-family":"'Press Start 2P',cursive"}, function(uri) {
+          console.log(uri);
+        });
+      }*/
+
+    });
+
+  </script>
+
+
+</head>
+
+<body >
+<div class="header">
+ <h1>Pirellone says..</h1>
+</div>
+
+<div class="container" ng-controller="TestController">
+  <div class="row">
+    <div class="col-lg-3 col-xs-6">
+      <div class="row"> <div class="col-lg-1 col-xs-2 numbers">1</div> <div class="col-lg-offset-1 col-lg-9 col-xs-8">Scrivi sulla riga per accendere le finestre del pirellone</div></div>
+      <div class="row"> <div class="col-lg-1 col-xs-2 v-line"></div></div>
+
+
+      <div class="row"> <div class="col-lg-1 col-xs-2 numbers">2</div> <div class="col-lg-offset-1 col-lg-9 col-xs-8">Controlla se il pirellone è ben accesso</div></div>
+      <div class="row"> <div class="col-lg-1 col-xs-2 v-line"></div></div>
+
+
+
+      <div class="row"> <div class="col-lg-1 col-xs-2 numbers">3</div> <div class="col-lg-offset-1 col-lg-9 col-xs-8">Scarica il tuo pirellone cliccando su <span style="font-family: 'Press Start 2P'; font-size: 9px">"Download"</span> o condividilo su facebook con <span style="font-family: 'Press Start 2P'; font-size: 9px">"SHARE ON FB"</span></div></div>
+</div>
+    <div class="col-lg-4 col-xs-6">
+      <form>
+        <div class="form-group">
+          <label for="riga1">Riga 1</label>
+          <input type="text" class="form-control" id="riga 1" placeholder="W" ng-model="riga1" ng-change="change()">
+        </div>
+        <div class="form-group">
+          <label for="riga2">Riga 2</label>
+          <input type="text" class="form-control" id="riga 2" placeholder="FAMILY" ng-model="riga2"  ng-change="change()">
+        </div>
+        <div class="form-group">
+          <label for="riga3">Riga 3</label>
+          <input type="text" class="form-control" id="riga 3" placeholder="DAY" ng-model="riga3"  ng-change="change()">
+        </div>
+        <div class="form-group">
+          <label for="riga4">Riga 4</label>
+          <input type="text" class="form-control" id="riga 4" placeholder="" ng-model="riga4"  ng-change="change()">
+        </div>
+        <div class="form-group">
+          <label for="riga5">Riga 5</label>
+          <input type="text" class="form-control" id="riga 5" placeholder="" ng-model="riga5"  ng-change="change()">
+        </div>
+        <div class="text-center">
+       <button class="bk-button hidden-md hidden-sm hidden-xs" ng-click="downloadf()" > <span><img class="img-responsive center-block " src="/maroni.png" border="0"  /><p class="text-center" style="font-family:'Press Start 2P';color:#ffff99">Download</p></span></button>
+       <button class="bk-button hidden-md hidden-sm hidden-xs" ng-click="save()" > <span><img class="img-responsive center-block " src="/share.png" border="0"  /><p class="text-center" style="font-family:'Press Start 2P';color:#ffff99">Share on FB</p></span></button></a>
+
+        </div>
+      </form>
+    </div>
+
+    <div class="col-lg-5 col-xs-7">
+      <svg id="pirellone" width="400px" height="600px"  version="1.1"
+           xmlns="http://www.w3.org/2000/svg" xmlns:xlink= "http://www.w3.org/1999/xlink">
+        <image xlink:href="pirellone.jpg" x="0" y="-120" height="800px" width="400px"/>
+        <text x="190" y="100" font-size='26' fill="#ffff99"  style="text-anchor: middle;" font-family="'Press Start 2P',cursive">{{riga1}}</text>
+        <text x="190" y="150" font-size='26' fill="#ffff99"  style="text-anchor: middle;" font-family="'Press Start 2P',cursive">{{riga2}}</text>
+        <text x="190" y="200" font-size='26' fill="#ffff99"  style="text-anchor: middle;" font-family="'Press Start 2P',cursive">{{riga3}}</text>
+        <text x="190" y="250" font-size='26' fill="#ffff99"  style="text-anchor: middle; font-family:'Press Start 2P'" font-family="'Press Start 2P',cursive">{{riga4}}</text>
+        <text x="190" y="300" font-size='26' fill="#ffff99"  style="text-anchor: middle;" font-family="'Press Start 2P',cursive">{{riga5}}</text>
+      </svg>
+    </div>
+    <div class="col-lg-5 col-xs-3">
+      <a href="{{share}}" class="bk-button hidden-lg" style="padding-top:40px;" ng-click="save()" > <span><img class="img-responsive center-block " src="/maroni.png" border="0"  /><p class="text-center" style="font-family:'Press Start 2P';color:#ffff99">Download</p></span></a>
+      <a href="" class="bk-button hidden-lg"  style="padding-top:40px;" ng-click="save()" > <span><img class="img-responsive center-block " src="/share.png" border="0"  /><p class="text-center" style="font-family:'Press Start 2P';color:#ffff99">Share on FB</p></span></a>
+
+    </div>
+
+
+  </div>
+
+
+</div>
+</body>
+</html>

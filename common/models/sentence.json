@@ -1,0 +1,30 @@
+{
+  "name": "sentence",
+  "plural": "sentences",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "row1": {
+      "type": "string"
+    },
+    "row2": {
+      "type": "string"
+    },
+    "row3": {
+      "type": "string"
+    },
+    "row4": {
+      "type": "string"
+    },
+    "row5": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
